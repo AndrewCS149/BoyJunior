@@ -31,6 +31,9 @@ namespace gameTutorial
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            ballPosition = new Vector2(graphics.PreferredBackBufferWidth / 2,
+                graphics.PreferredBackBufferHeight / 2);
+            ballSpeed = 100f;
 
             base.Initialize();
         }
@@ -82,7 +85,7 @@ namespace gameTutorial
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            spriteBatch.Draw(ballTexture, new Vector2(0, 0), Color.White);
+            spriteBatch.Draw(ballTexture, ballPosition, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
