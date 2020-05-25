@@ -74,16 +74,16 @@ namespace gameTutorial
             var keyState = Keyboard.GetState();
 
             // enable movement with keypresses
-            if (keyState.IsKeyDown(Keys.Up))
+            if (keyState.IsKeyDown(Keys.W))
                 ballPosition.Y -= ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (keyState.IsKeyDown(Keys.Down))
+            if (keyState.IsKeyDown(Keys.S))
                 ballPosition.Y += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (keyState.IsKeyDown(Keys.Left))
+            if (keyState.IsKeyDown(Keys.A))
                 ballPosition.X -= ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (keyState.IsKeyDown(Keys.Right))
+            if (keyState.IsKeyDown(Keys.D))
                 ballPosition.X += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // set window bounds
