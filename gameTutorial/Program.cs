@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace gameTutorial
+namespace MonoGameTutorial
 {
 #if WINDOWS || LINUX
     /// <summary>
