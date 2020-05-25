@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace MonoGameTutorial
+namespace gameTutorial
 {
     /// <summary>
     /// This is the main type for your game.
@@ -48,7 +48,7 @@ namespace MonoGameTutorial
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            ballTexture = Content.Load<Texture2D>("imgs/ball");
+            ballTexture = Content.Load<Texture2D>("Imgs/ball");
         }
 
         /// <summary>

@@ -21,10 +21,14 @@
 /build:fonts/font.spritefont
 
 #begin Imgs/ball.png
-/copy:Imgs/ball.png
+/importer:
+/processor:
+/build:Imgs/ball.png
 
 #begin Imgs/blue-shirt-guy.png
-/copy:Imgs/blue-shirt-guy.png
+/importer:
+/processor:
+/build:Imgs/blue-shirt-guy.png
 
 #begin music/mimosa.mp3
 /importer:Mp3Importer
