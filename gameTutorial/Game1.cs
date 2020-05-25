@@ -73,6 +73,7 @@ namespace gameTutorial
             // TODO: Add your update logic here
             var keyState = Keyboard.GetState();
 
+            // enable movement with keypresses
             if (keyState.IsKeyDown(Keys.Up))
                 ballPosition.Y -= ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -84,6 +85,17 @@ namespace gameTutorial
 
             if (keyState.IsKeyDown(Keys.Right))
                 ballPosition.X += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            // set window bounds
+            if (ballPosition.X > graphics.PreferredBackBufferWidth - ballTexture.Width / 2)
+                ballPosition.X = graphics.PreferredBackBufferWidth - ballTexture.Width / 2;
+            else if (ballPosition.X < ballTexture.Width / 2)
+                ballPosition.X = ballTexture.Width / 2;
+
+            if (ballPosition.Y > graphics.PreferredBackBufferHeight - ballTexture.Height / 2)
+                ballPosition.Y = graphics.PreferredBackBufferHeight - ballTexture.Height / 2;
+            else if (ballPosition.Y < ballTexture.Height / 2)
+                ballPosition.Y = ballTexture.Height / 2;
 
             base.Update(gameTime);
         }
