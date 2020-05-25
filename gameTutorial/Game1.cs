@@ -71,6 +71,19 @@ namespace gameTutorial
                 Exit();
 
             // TODO: Add your update logic here
+            var keyState = Keyboard.GetState();
+
+            if (keyState.IsKeyDown(Keys.Up))
+                ballPosition.Y -= ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (keyState.IsKeyDown(Keys.Down))
+                ballPosition.Y += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (keyState.IsKeyDown(Keys.Left))
+                ballPosition.X -= ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (keyState.IsKeyDown(Keys.Right))
+                ballPosition.X += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             base.Update(gameTime);
         }
@@ -85,7 +98,17 @@ namespace gameTutorial
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            spriteBatch.Draw(ballTexture, ballPosition, Color.White);
+            spriteBatch.Draw(
+                ballTexture, 
+                ballPosition,
+                null,
+                Color.White,
+                0f,
+                new Vector2(ballTexture.Width / 2, ballTexture.Height / 2),
+                Vector2.One,
+                SpriteEffects.None,
+                0f
+            );
             spriteBatch.End();
 
             base.Draw(gameTime);
