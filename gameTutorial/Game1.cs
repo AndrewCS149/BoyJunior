@@ -9,9 +9,9 @@ namespace gameTutorial
     /// </summary>
     public class Game1 : Game
     {
-        Texture2D ballTexture;
-        Vector2 ballPosition;
-        float ballSpeed;
+        Texture2D guySprite;
+        Vector2 guyPosition;
+        float guySpeed;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -31,9 +31,9 @@ namespace gameTutorial
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            ballPosition = new Vector2(graphics.PreferredBackBufferWidth / 2,
+            guyPosition = new Vector2(graphics.PreferredBackBufferWidth / 2,
                 graphics.PreferredBackBufferHeight / 2);
-            ballSpeed = 500f;
+            guySpeed = 500f;
 
             base.Initialize();
         }
@@ -48,7 +48,7 @@ namespace gameTutorial
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            ballTexture = Content.Load<Texture2D>("Imgs/ball");
+            guySprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
         }
 
         /// <summary>
@@ -75,27 +75,27 @@ namespace gameTutorial
 
             // enable movement with keypresses
             if (keyState.IsKeyDown(Keys.W))
-                ballPosition.Y -= ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                guyPosition.Y -= guySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (keyState.IsKeyDown(Keys.S))
-                ballPosition.Y += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                guyPosition.Y += guySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (keyState.IsKeyDown(Keys.A))
-                ballPosition.X -= ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                guyPosition.X -= guySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (keyState.IsKeyDown(Keys.D))
-                ballPosition.X += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                guyPosition.X += guySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // set window bounds
-            if (ballPosition.X > graphics.PreferredBackBufferWidth - ballTexture.Width / 2)
-                ballPosition.X = graphics.PreferredBackBufferWidth - ballTexture.Width / 2;
-            else if (ballPosition.X < ballTexture.Width / 2)
-                ballPosition.X = ballTexture.Width / 2;
+            if (guyPosition.X > graphics.PreferredBackBufferWidth - guySprite.Width / 2)
+                guyPosition.X = graphics.PreferredBackBufferWidth - guySprite.Width / 2;
+            else if (guyPosition.X < guySprite.Width / 2)
+                guyPosition.X = guySprite.Width / 2;
 
-            if (ballPosition.Y > graphics.PreferredBackBufferHeight - ballTexture.Height / 2)
-                ballPosition.Y = graphics.PreferredBackBufferHeight - ballTexture.Height / 2;
-            else if (ballPosition.Y < ballTexture.Height / 2)
-                ballPosition.Y = ballTexture.Height / 2;
+            if (guyPosition.Y > graphics.PreferredBackBufferHeight - guySprite.Height / 2)
+                guyPosition.Y = graphics.PreferredBackBufferHeight - guySprite.Height / 2;
+            else if (guyPosition.Y < guySprite.Height / 2)
+                guyPosition.Y = guySprite.Height / 2;
 
             base.Update(gameTime);
         }
@@ -111,12 +111,12 @@ namespace gameTutorial
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             spriteBatch.Draw(
-                ballTexture, 
-                ballPosition,
+                guySprite, 
+                guyPosition,
                 null,
                 Color.White,
                 0f,
-                new Vector2(ballTexture.Width / 2, ballTexture.Height / 2),
+                new Vector2(guySprite.Width / 2, guySprite.Height / 2),
                 Vector2.One,
                 SpriteEffects.None,
                 0f
