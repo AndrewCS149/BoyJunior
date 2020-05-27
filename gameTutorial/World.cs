@@ -22,7 +22,7 @@ namespace gameTutorial
             graphics = new GraphicsDeviceManager(this);
         }
 
-        // set the map position
+        // set the map position and size
         public void initialize()
         {
             position = new Vector2(graphics.PreferredBackBufferWidth,
@@ -39,7 +39,7 @@ namespace gameTutorial
                 null,
                 Color.White,
                 0f,
-                new Vector2(map.Width, map.Height),
+                new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight),
                 Vector2.One,
                 SpriteEffects.None,
                 0f

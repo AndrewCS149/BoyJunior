@@ -16,6 +16,8 @@ namespace gameTutorial
         Texture2D mapSprite;
         Player player = new Player();
         World world = new World();
+        int mapWidth;
+        int mapHeight;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -34,6 +36,16 @@ namespace gameTutorial
         /// </summary>
         protected override void Initialize()
         {
+            // set world size to fit monitor size
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+
+            mapWidth = graphics.PreferredBackBufferWidth;
+            mapHeight = graphics.PreferredBackBufferHeight;
+
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+
             world.initialize();
             player.initialize();
             base.Initialize();
@@ -73,7 +85,7 @@ namespace gameTutorial
                 Exit();
 
             player.updatePosition(gameTime, playerSprite);
-            player.setBoundaries(playerSprite);
+            player.setBoundaries(playerSprite, mapWidth, mapHeight);
 
             base.Update(gameTime);
         }

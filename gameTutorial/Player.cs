@@ -53,15 +53,15 @@ namespace gameTutorial
         }
 
         // a method to set the window boundaries of the player
-        public void setBoundaries(Texture2D sprite)
+        public void setBoundaries(Texture2D sprite, int width, int height)
         {
-            if (position.X > graphics.PreferredBackBufferWidth - sprite.Width / 2)
-                position.X = graphics.PreferredBackBufferWidth - sprite.Width / 2;
+            if (position.X > width - sprite.Width / 2)
+                position.X = width - sprite.Width / 2;
             else if (position.X < sprite.Width / 2)
                 position.X = sprite.Width / 2;
 
-            if (position.Y > graphics.PreferredBackBufferHeight - sprite.Height / 2)
-                position.Y = graphics.PreferredBackBufferHeight - sprite.Height / 2;
+            if (position.Y > height - sprite.Height / 2)
+                position.Y = height - sprite.Height / 2;
             else if (position.Y < sprite.Height / 2)
                 position.Y = sprite.Height / 2;
         }
