@@ -14,11 +14,8 @@ namespace gameTutorial
     class Player : Game
     {
         Vector2 position;
-        Texture2D sprite;
         float speed;
-
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
 
         public Player()
         {

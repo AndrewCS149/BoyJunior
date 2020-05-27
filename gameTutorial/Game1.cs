@@ -10,8 +10,6 @@ namespace gameTutorial
     public class Game1 : Game
     {
         Texture2D guySprite;
-        Vector2 guyPosition;
-        float guySpeed;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
