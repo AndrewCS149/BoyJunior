@@ -9,10 +9,12 @@ namespace gameTutorial
     /// </summary>
     public class Game1 : Game
     {
-        Texture2D ballTexture;
+        Texture2D guySprite;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Player player = new Player();
 
         public Game1()
         {
@@ -28,8 +30,7 @@ namespace gameTutorial
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            player.initialize();
             base.Initialize();
         }
 
@@ -39,11 +40,11 @@ namespace gameTutorial
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
+            //Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            ballTexture = Content.Load<Texture2D>("imgs/ball");
+            //// TODO: use this.Content to load your game content here
+            guySprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
         }
 
         /// <summary>
@@ -65,7 +66,8 @@ namespace gameTutorial
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            player.updatePosition(gameTime, guySprite);
+            player.setBoundaries(guySprite);
 
             base.Update(gameTime);
         }
@@ -78,10 +80,7 @@ namespace gameTutorial
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            spriteBatch.Draw(ballTexture, new Vector2(0, 0), Color.White);
-            spriteBatch.End();
+            player.drawPlayer(spriteBatch, guySprite);
 
             base.Draw(gameTime);
         }
