@@ -27,6 +27,7 @@ namespace gameTutorial
         {
             position = new Vector2(graphics.PreferredBackBufferWidth,
                 graphics.PreferredBackBufferHeight);
+            //position = new Vector2(width, height);
         }
 
         // draw the map

@@ -43,7 +43,7 @@ namespace gameTutorial
             mapWidth = graphics.PreferredBackBufferWidth;
             mapHeight = graphics.PreferredBackBufferHeight;
 
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
             world.initialize();
@@ -62,7 +62,7 @@ namespace gameTutorial
 
             //// TODO: use this.Content to load your game content here
             playerSprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
-            mapSprite = Content.Load<Texture2D>("map");
+            mapSprite = Content.Load<Texture2D>("maps/map32x32");
         }
 
         /// <summary>
