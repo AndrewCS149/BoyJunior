@@ -14,7 +14,6 @@ namespace gameTutorial
     class Player : Game
     {
         Vector2 position;
-        Vector2 mapPosition;
         float speed;
         GraphicsDeviceManager graphics;
 
@@ -29,9 +28,6 @@ namespace gameTutorial
         {
             position = new Vector2(graphics.PreferredBackBufferWidth / 2,
                 graphics.PreferredBackBufferHeight / 2);
-
-            mapPosition = new Vector2(graphics.PreferredBackBufferWidth,
-                graphics.PreferredBackBufferHeight);
 
             // set player speed
             speed = 500f;
@@ -77,21 +73,9 @@ namespace gameTutorial
         }
 
         // a method to draw the player to the screen
-        public void drawPlayer(SpriteBatch spriteBatch, Texture2D sprite, Texture2D map)
+        public void drawPlayer(SpriteBatch spriteBatch, Texture2D sprite)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(
-                map,
-                mapPosition,
-                null,
-                Color.White,
-                0f,
-                new Vector2(map.Width, map.Height),
-                Vector2.One,
-                SpriteEffects.None,
-                0f
-            );
-
             spriteBatch.Draw(
                 sprite,
                 position,

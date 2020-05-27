@@ -15,6 +15,7 @@ namespace gameTutorial
         Texture2D playerSprite;
         Texture2D map;
         Player player = new Player();
+        World world = new World();
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -33,6 +34,7 @@ namespace gameTutorial
         /// </summary>
         protected override void Initialize()
         {
+            world.initialize();
             player.initialize();
             base.Initialize();
         }
@@ -84,7 +86,8 @@ namespace gameTutorial
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            player.drawPlayer(spriteBatch, playerSprite, map);
+            world.drawWorld(spriteBatch, map);
+            player.drawPlayer(spriteBatch, playerSprite);
 
             base.Draw(gameTime);
         }
