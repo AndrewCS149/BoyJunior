@@ -10,10 +10,8 @@ namespace gameTutorial
     public class Game1 : Game
     {
         Texture2D guySprite;
-
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
         Player player = new Player();
 
         public Game1()
