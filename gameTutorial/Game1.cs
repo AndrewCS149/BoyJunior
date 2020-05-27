@@ -13,7 +13,7 @@ namespace gameTutorial
     public class Game1 : Game
     {
         Texture2D playerSprite;
-        Texture2D map;
+        Texture2D mapSprite;
         Player player = new Player();
         World world = new World();
 
@@ -50,7 +50,7 @@ namespace gameTutorial
 
             //// TODO: use this.Content to load your game content here
             playerSprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
-            map = Content.Load<Texture2D>("map");
+            mapSprite = Content.Load<Texture2D>("map");
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace gameTutorial
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            world.drawWorld(spriteBatch, map);
+            world.drawWorld(spriteBatch, mapSprite);
             player.drawPlayer(spriteBatch, playerSprite);
 
             base.Draw(gameTime);
