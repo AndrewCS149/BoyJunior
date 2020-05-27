@@ -67,6 +67,7 @@ namespace gameTutorial
                 Exit();
 
             player.updatePosition(gameTime, guySprite);
+            player.setBoundaries(guySprite);
 
             base.Update(gameTime);
         }

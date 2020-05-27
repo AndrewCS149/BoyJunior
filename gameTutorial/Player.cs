@@ -23,14 +23,18 @@ namespace gameTutorial
             Content.RootDirectory = "Content";
         }
 
+        // a method to initialize the player's starting position and to set the 
+        // initial speed
         public void initialize()
         {
             position = new Vector2(graphics.PreferredBackBufferWidth / 2,
                 graphics.PreferredBackBufferHeight / 2);
 
+            // set player speed
             speed = 500f;
         }
 
+        // a method to update the position of the player based on the key press
         public void updatePosition(GameTime gameTime, Texture2D sprite)
         {
             var keyState = Keyboard.GetState();
@@ -47,8 +51,11 @@ namespace gameTutorial
 
             if (keyState.IsKeyDown(Keys.D))
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        }
 
-            // set window bounds
+        // a method to set the window boundaries of the player
+        public void setBoundaries(Texture2D sprite)
+        {
             if (position.X > graphics.PreferredBackBufferWidth - sprite.Width / 2)
                 position.X = graphics.PreferredBackBufferWidth - sprite.Width / 2;
             else if (position.X < sprite.Width / 2)
@@ -60,6 +67,13 @@ namespace gameTutorial
                 position.Y = sprite.Height / 2;
         }
 
+        // a method to return the position of the player
+        public Vector2 getPosition()
+        {
+            return position;
+        }
+
+        // a method to draw the player to the screen
         public void drawPlayer(SpriteBatch spriteBatch, Texture2D sprite)
         {
             spriteBatch.Begin();
