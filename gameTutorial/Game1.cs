@@ -13,10 +13,11 @@ namespace gameTutorial
     public class Game1 : Game
     {
         Texture2D playerSprite;
+        Texture2D map;
+        Player player = new Player();
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Player player = new Player();
-        Texture2D map;
 
         public Game1()
         {
@@ -81,8 +82,6 @@ namespace gameTutorial
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-
-
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             player.drawPlayer(spriteBatch, playerSprite, map);
