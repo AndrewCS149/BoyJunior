@@ -49,11 +49,6 @@
 /processorParam:TextureFormat=Color
 /build:Imgs/blue-shirt-guy.png
 
-#begin map4.tmx
-/importer:
-/processor:
-/build:map4.tmx
-
 #begin maps/map32x32.png
 /importer:TextureImporter
 /processor:TextureProcessor
