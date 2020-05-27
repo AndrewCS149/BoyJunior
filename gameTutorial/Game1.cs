@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
+using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tiled.Renderers;
 
 namespace gameTutorial
 {
@@ -9,15 +12,16 @@ namespace gameTutorial
     /// </summary>
     public class Game1 : Game
     {
-        Texture2D guySprite;
+        Texture2D playerSprite;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Player player = new Player();
+        Texture2D map;
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics = new GraphicsDeviceManager(this);
         }
 
         /// <summary>
@@ -42,7 +46,8 @@ namespace gameTutorial
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //// TODO: use this.Content to load your game content here
-            guySprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
+            playerSprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
+            map = Content.Load<Texture2D>("map");
         }
 
         /// <summary>
@@ -64,8 +69,8 @@ namespace gameTutorial
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            player.updatePosition(gameTime, guySprite);
-            player.setBoundaries(guySprite);
+            player.updatePosition(gameTime, playerSprite);
+            player.setBoundaries(playerSprite);
 
             base.Update(gameTime);
         }
@@ -76,9 +81,11 @@ namespace gameTutorial
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+
+
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            player.drawPlayer(spriteBatch, guySprite);
+            player.drawPlayer(spriteBatch, playerSprite, map);
 
             base.Draw(gameTime);
         }
