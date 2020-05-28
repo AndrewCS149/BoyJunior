@@ -38,12 +38,12 @@ namespace gameTutorial
         {
             // set world size to fit monitor size
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height - 100;
 
             mapWidth = graphics.PreferredBackBufferWidth;
             mapHeight = graphics.PreferredBackBufferHeight;
 
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
             world.initialize();
