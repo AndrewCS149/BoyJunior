@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
+using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tiled.Renderers;
 
 namespace gameTutorial
 {
@@ -9,17 +12,20 @@ namespace gameTutorial
     /// </summary>
     public class Game1 : Game
     {
-        Texture2D guySprite;
+        Texture2D playerSprite;
+        Texture2D mapSprite;
+        Player player = new Player();
+        World world = new World();
+        int mapWidth;
+        int mapHeight;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Player player = new Player();
-
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics = new GraphicsDeviceManager(this);
         }
 
         /// <summary>
@@ -30,6 +36,17 @@ namespace gameTutorial
         /// </summary>
         protected override void Initialize()
         {
+            // set world size to fit monitor size
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+
+            mapWidth = graphics.PreferredBackBufferWidth;
+            mapHeight = graphics.PreferredBackBufferHeight;
+
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+
+            world.initialize();
             player.initialize();
             base.Initialize();
         }
@@ -44,7 +61,8 @@ namespace gameTutorial
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //// TODO: use this.Content to load your game content here
-            guySprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
+            playerSprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
+            mapSprite = Content.Load<Texture2D>("maps/map32x32");
         }
 
         /// <summary>
@@ -66,8 +84,8 @@ namespace gameTutorial
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            player.updatePosition(gameTime, guySprite);
-            player.setBoundaries(guySprite);
+            player.updatePosition(gameTime, playerSprite);
+            player.setBoundaries(playerSprite, mapWidth, mapHeight);
 
             base.Update(gameTime);
         }
@@ -80,7 +98,8 @@ namespace gameTutorial
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            player.drawPlayer(spriteBatch, guySprite);
+            world.drawWorld(spriteBatch, mapSprite);
+            player.drawPlayer(spriteBatch, playerSprite);
 
             base.Draw(gameTime);
         }
