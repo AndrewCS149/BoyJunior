@@ -2,6 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using MonoGame.Extended.Content;
+using MonoGame.Extended.Graphics;
+using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 
@@ -54,10 +57,6 @@ namespace gameTutorial
             world.initialize();
             player.initialize();
 
-            // TODO: fix this. 
-            // import tmx map
-            map = Content.Load<TiledMap>("maps/terrain");
-            mapRenderer = new TiledMapRenderer(GraphicsDevice);
         }
 
         /// <summary>
@@ -72,6 +71,11 @@ namespace gameTutorial
             //// TODO: use this.Content to load your game content here
             playerSprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
             mapSprite = Content.Load<Texture2D>("maps/map32x32");
+
+            // import tmx map
+            map = Content.Load<TiledMap>("maps/terrain");
+            mapRenderer = new TiledMapRenderer(GraphicsDevice);
+            mapRenderer.LoadMap(map);
         }
 
         /// <summary>
@@ -96,6 +100,9 @@ namespace gameTutorial
             player.updatePosition(gameTime, playerSprite);
             player.setBoundaries(playerSprite, mapWidth, mapHeight);
 
+            // update tmx map
+            mapRenderer.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -108,8 +115,14 @@ namespace gameTutorial
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             world.drawWorld(spriteBatch, mapSprite);
-            player.drawPlayer(spriteBatch, playerSprite);
 
+            // draw txm map
+            spriteBatch.Begin();
+            mapRenderer.Draw();
+            spriteBatch.End();
+
+            player.drawPlayer(spriteBatch, playerSprite);
+            
             base.Draw(gameTime);
         }
     }
