@@ -56,8 +56,8 @@ namespace gameTutorial
 
             // TODO: fix this. 
             // import tmx map
-            //map = Content.Load<TiledMap>("maps/terrain");
-            //mapRenderer = new TiledMapRenderer(GraphicsDevice);
+            map = Content.Load<TiledMap>("maps/terrain");
+            mapRenderer = new TiledMapRenderer(GraphicsDevice);
         }
 
         /// <summary>
