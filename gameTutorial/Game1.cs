@@ -16,6 +16,9 @@ namespace gameTutorial
         Texture2D mapSprite;
         Player player = new Player();
         World world = new World();
+        private TiledMap map;
+        private TiledMapRenderer mapRenderer;
+
         int mapWidth;
         int mapHeight;
 
@@ -36,6 +39,8 @@ namespace gameTutorial
         /// </summary>
         protected override void Initialize()
         {
+            base.Initialize();
+
             // set world size to fit monitor size
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height - 100;
@@ -48,7 +53,11 @@ namespace gameTutorial
 
             world.initialize();
             player.initialize();
-            base.Initialize();
+
+            // TODO: fix this. 
+            // import tmx map
+            //map = Content.Load<TiledMap>("maps/terrain");
+            //mapRenderer = new TiledMapRenderer(GraphicsDevice);
         }
 
         /// <summary>
