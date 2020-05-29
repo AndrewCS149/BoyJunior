@@ -16,9 +16,7 @@ namespace gameTutorial
     public class Game1 : Game
     {
         Texture2D playerSprite;
-        Texture2D mapSprite;
         Player player = new Player();
-        World world = new World();
         private TiledMap map;
         private TiledMapRenderer mapRenderer;
 
@@ -54,9 +52,7 @@ namespace gameTutorial
             //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
-            world.initialize();
             player.initialize();
-
         }
 
         /// <summary>
@@ -70,7 +66,6 @@ namespace gameTutorial
 
             //// TODO: use this.Content to load your game content here
             playerSprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
-            mapSprite = Content.Load<Texture2D>("maps/map32x32");
 
             // import tmx map
             map = Content.Load<TiledMap>("maps/terrain");
@@ -114,15 +109,13 @@ namespace gameTutorial
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            world.drawWorld(spriteBatch, mapSprite);
-
             // draw txm map
             spriteBatch.Begin();
             mapRenderer.Draw();
             spriteBatch.End();
-
-            player.drawPlayer(spriteBatch, playerSprite);
             
+            player.drawPlayer(spriteBatch, playerSprite);
+
             base.Draw(gameTime);
         }
     }
