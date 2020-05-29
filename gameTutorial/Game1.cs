@@ -16,7 +16,7 @@ namespace gameTutorial
     public class Game1 : Game
     {
         Texture2D playerSprite;
-        Player player = new Player();
+        Player player = new Player(200);
         private TiledMap map;
         private TiledMapRenderer mapRenderer;
 
