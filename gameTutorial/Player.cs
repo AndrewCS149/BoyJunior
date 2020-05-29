@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace gameTutorial
 {
-
     class Player : Game
     {
         Vector2 position;
