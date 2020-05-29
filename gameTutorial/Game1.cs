@@ -17,6 +17,7 @@ namespace gameTutorial
     {
         Texture2D playerSprite;
         Player player = new Player(200);
+        World world = new World();
         private TiledMap map;
         private TiledMapRenderer mapRenderer;
 
@@ -109,11 +110,7 @@ namespace gameTutorial
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // draw txm map
-            spriteBatch.Begin();
-            mapRenderer.Draw();
-            spriteBatch.End();
-            
+            world.drawWorld(spriteBatch, mapRenderer);            
             player.drawPlayer(spriteBatch, playerSprite);
 
             base.Draw(gameTime);

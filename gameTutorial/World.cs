@@ -13,8 +13,15 @@ namespace gameTutorial
 {
 
     // A class to initialize and draw the world to the screen
-    class World : Game
+    public class World : Game
     {
 
+        // method to draw the world to the screen
+        public void drawWorld(SpriteBatch spriteBatch, TiledMapRenderer mapRenderer)
+        {
+            spriteBatch.Begin();
+            mapRenderer.Draw();
+            spriteBatch.End();
+        }
     }
 }
