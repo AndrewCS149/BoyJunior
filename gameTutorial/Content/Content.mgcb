@@ -10,10 +10,10 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:MonoGame.Extended.dll
-/reference:MonoGame.Extended.Content.Pipeline.dll
-/reference:MonoGame.Extended.Tiled.dll
-/reference:MonoGame.Extended.Graphics.dll
+/reference:ref\MonoGame.Extended.dll
+/reference:ref\MonoGame.Extended.Content.Pipeline.dll
+/reference:ref\MonoGame.Extended.Graphics.dll
+/reference:ref\MonoGame.Extended.Tiled.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -48,11 +48,6 @@
 /processorParam:TextureFormat=Color
 /build:Imgs/blue-shirt-guy.png
 
-#begin map4.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:map4.tmx
-
 #begin maps/map32x32.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -64,6 +59,11 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:maps/map32x32.png
+
+#begin maps/terrain.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:maps/terrain.tmx
 
 #begin music/mimosa.mp3
 /importer:Mp3Importer

@@ -10,15 +10,15 @@ using Microsoft.Xna.Framework.Input;
 
 namespace gameTutorial
 {
-
     class Player : Game
     {
         Vector2 position;
         float speed;
         GraphicsDeviceManager graphics;
 
-        public Player()
+        public Player(float speed)
         {
+            this.speed = speed;
             graphics = new GraphicsDeviceManager(this);
         }
 
@@ -28,9 +28,6 @@ namespace gameTutorial
         {
             position = new Vector2(graphics.PreferredBackBufferWidth / 2,
                 graphics.PreferredBackBufferHeight / 2);
-
-            // set player speed
-            speed = 500f;
         }
 
         // a method to update the position of the player based on the key press

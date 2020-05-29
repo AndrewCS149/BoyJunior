@@ -2,6 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using MonoGame.Extended.Content;
+using MonoGame.Extended.Graphics;
+using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 
@@ -13,9 +16,11 @@ namespace gameTutorial
     public class Game1 : Game
     {
         Texture2D playerSprite;
-        Texture2D mapSprite;
-        Player player = new Player();
+        Player player = new Player(200);
         World world = new World();
+        private TiledMap map;
+        private TiledMapRenderer mapRenderer;
+
         int mapWidth;
         int mapHeight;
 
@@ -36,19 +41,19 @@ namespace gameTutorial
         /// </summary>
         protected override void Initialize()
         {
+            base.Initialize();
+
             // set world size to fit monitor size
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height - 100;
 
             mapWidth = graphics.PreferredBackBufferWidth;
             mapHeight = graphics.PreferredBackBufferHeight;
 
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
-            world.initialize();
             player.initialize();
-            base.Initialize();
         }
 
         /// <summary>
@@ -62,7 +67,11 @@ namespace gameTutorial
 
             //// TODO: use this.Content to load your game content here
             playerSprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
-            mapSprite = Content.Load<Texture2D>("maps/map32x32");
+
+            // import tmx map
+            map = Content.Load<TiledMap>("maps/terrain");
+            mapRenderer = new TiledMapRenderer(GraphicsDevice);
+            mapRenderer.LoadMap(map);
         }
 
         /// <summary>
@@ -87,6 +96,9 @@ namespace gameTutorial
             player.updatePosition(gameTime, playerSprite);
             player.setBoundaries(playerSprite, mapWidth, mapHeight);
 
+            // update tmx map
+            mapRenderer.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -98,7 +110,7 @@ namespace gameTutorial
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            world.drawWorld(spriteBatch, mapSprite);
+            world.drawWorld(spriteBatch, mapRenderer);            
             player.drawPlayer(spriteBatch, playerSprite);
 
             base.Draw(gameTime);

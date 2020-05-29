@@ -45,6 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
+    <Compile Include="helper.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,12 +101,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\MonoGame.Extended.3.7.0\lib\netstandard2.0\MonoGame.Extended.dll" />
+    <Content Include="Content\MonoGame.Extended.Content.Pipeline.3.7.0\lib\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll" />
+    <Content Include="Content\MonoGame.Extended.Graphics.3.7.0\lib\netstandard2.0\MonoGame.Extended.Graphics.dll" />
+    <Content Include="Content\MonoGame.Extended.Tiled.3.7.0\lib\netstandard2.0\MonoGame.Extended.Tiled.dll" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.config" />
     <None Include="app.manifest" />
+    <None Include="Content\MonoGame.Extended.3.7.0\.signature.p7s" />
+    <None Include="Content\MonoGame.Extended.3.7.0\MonoGame.Extended.3.7.0.nupkg" />
+    <None Include="Content\MonoGame.Extended.Content.Pipeline.3.7.0\.signature.p7s" />
+    <None Include="Content\MonoGame.Extended.Content.Pipeline.3.7.0\MonoGame.Extended.Content.Pipeline.3.7.0.nupkg" />
+    <None Include="Content\MonoGame.Extended.Graphics.3.7.0\.signature.p7s" />
+    <None Include="Content\MonoGame.Extended.Graphics.3.7.0\MonoGame.Extended.Graphics.3.7.0.nupkg" />
+    <None Include="Content\MonoGame.Extended.Tiled.3.7.0\.signature.p7s" />
+    <None Include="Content\MonoGame.Extended.Tiled.3.7.0\MonoGame.Extended.Tiled.3.7.0.nupkg" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -115,6 +128,9 @@
       <Version>3.7.0</Version>
     </PackageReference>
     <PackageReference Include="MonoGame.Extended.Content.Pipeline">
+      <Version>3.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="MonoGame.Extended.Graphics">
       <Version>3.7.0</Version>
     </PackageReference>
     <PackageReference Include="MonoGame.Extended.Tiled">
