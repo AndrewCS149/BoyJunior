@@ -9,6 +9,7 @@ using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 using SharpDX.MediaFoundation;
 using System.ComponentModel.Design.Serialization;
+using System.Linq;
 using System.Net;
 
 namespace gameTutorial
@@ -22,6 +23,8 @@ namespace gameTutorial
         private TiledMapLayer bottomLayer;
         private TiledMapLayer topLayer;
         public static TiledMapObject collisionObject;
+        public static TiledMapObject collisionObject2;
+        public TiledMapObjectLayer objectLayer;
 
         Texture2D playerSprite;
         Player player;
@@ -86,6 +89,11 @@ namespace gameTutorial
             topLayer = map.GetLayer<TiledMapLayer>("topLayer");
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
             mapRenderer.LoadMap(map);
+
+            // collision variables
+            collisionObject = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(0);
+            collisionObject2 = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(1);
+            objectLayer = map.GetLayer<TiledMapObjectLayer>("collision");
         }
 
         /// <summary>
@@ -107,8 +115,16 @@ namespace gameTutorial
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            // update player position
             player.updatePosition(gameTime);
-            player.collision();
+
+            // collision detection
+            for (int i = 0; i < objectLayer.Objects.Length; i++)
+            {
+                collisionObject = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(i);
+                player.collision(collisionObject);
+
+            }
             player.setBoundaries(mapWidth, mapHeight);
 
             // update tmx map
