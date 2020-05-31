@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="80" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="19">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="80" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="24">
  <tileset firstgid="1" name="[A]Grass1-Grass4_pipo" tilewidth="32" tileheight="32" tilecount="48" columns="8">
   <image source="[A]Grass1-Grass4_pipo.png" width="256" height="192"/>
  </tileset>
  <tileset firstgid="49" name="[A]Water2_pipo" tilewidth="32" tileheight="32" tilecount="48" columns="8">
   <image source="[A]Water2_pipo.png" width="256" height="192"/>
+  <tile id="5">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="-247" y="-275" width="355" height="228"/>
+   </objectgroup>
+  </tile>
  </tileset>
  <tileset firstgid="97" name="dirt" tilewidth="32" tileheight="32" tilecount="48" columns="8">
   <image source="[A]Dirt2_pipo.png" width="256" height="192"/>
@@ -113,5 +118,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="3" name="Object Layer 1"/>
+ <objectgroup id="3" name="collision">
+  <object id="23" x="736" y="576" width="448" height="288"/>
+ </objectgroup>
 </map>

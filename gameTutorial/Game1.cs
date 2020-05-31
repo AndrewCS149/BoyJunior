@@ -7,6 +7,7 @@ using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
+using SharpDX.MediaFoundation;
 using System.ComponentModel.Design.Serialization;
 using System.Net;
 
@@ -20,10 +21,12 @@ namespace gameTutorial
 
         private TiledMapLayer bottomLayer;
         private TiledMapLayer topLayer;
+        public static TiledMapObject collisionObject;
 
         Texture2D playerSprite;
-        Player player = new Player(200);
-        private TiledMap map;
+        Player player;
+
+        public static TiledMap map;
         private TiledMapRenderer mapRenderer;
 
         int mapWidth;
@@ -73,6 +76,7 @@ namespace gameTutorial
 
             // load player
             playerSprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
+            player = new Player(200f, playerSprite.Width, playerSprite.Height, playerSprite);
 
             // import tmx map
             map = Content.Load<TiledMap>("maps/terrain");
@@ -80,7 +84,6 @@ namespace gameTutorial
             // grab bottom layer and top layer
             bottomLayer = map.GetLayer<TiledMapLayer>("bottomLayer");
             topLayer = map.GetLayer<TiledMapLayer>("topLayer");
-
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
             mapRenderer.LoadMap(map);
         }
@@ -104,8 +107,8 @@ namespace gameTutorial
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            player.updatePosition(gameTime, playerSprite);
-            player.setBoundaries(playerSprite, mapWidth, mapHeight);
+            player.updatePosition(gameTime);
+            player.setBoundaries(mapWidth, mapHeight);
 
             // update tmx map
             mapRenderer.Update(gameTime);
@@ -122,7 +125,7 @@ namespace gameTutorial
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             mapRenderer.Draw(bottomLayer);
-            player.drawPlayer(spriteBatch, playerSprite);
+            player.drawPlayer(spriteBatch);
             mapRenderer.Draw(topLayer);
 
             base.Draw(gameTime);

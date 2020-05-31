@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Tiled;
 
 namespace gameTutorial
 {
@@ -15,9 +16,15 @@ namespace gameTutorial
         Vector2 position;
         float speed;
         GraphicsDeviceManager graphics;
+        private int width;
+        private int height;
+        Texture2D sprite;
 
-        public Player(float speed)
+        public Player(float speed, int width, int height, Texture2D sprite)
         {
+            this.sprite = sprite;
+            this.width = width;
+            this.height = height;
             this.speed = speed;
             graphics = new GraphicsDeviceManager(this);
         }
@@ -31,7 +38,7 @@ namespace gameTutorial
         }
 
         // a method to update the position of the player based on the key press
-        public void updatePosition(GameTime gameTime, Texture2D sprite)
+        public void updatePosition(GameTime gameTime)
         {
             var keyState = Keyboard.GetState();
 
@@ -47,10 +54,22 @@ namespace gameTutorial
 
             if (keyState.IsKeyDown(Keys.D))
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                
+            Game1.collisionObject = Game1.map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(0);
+            //Console.WriteLine(Game1.collisionObject.Objects.ElementAt<TiledMapObject>(0).Position.X);
+
+            float objectX = Game1.collisionObject.Position.X;
+            float objectY = Game1.collisionObject.Position.Y;
+
+            if (position.X > objectX - sprite.Width / 2)
+            {
+                //position.Y = position.Y;
+                position.X = objectX - sprite.Width / 2;
+            }
         }
 
         // a method to set the window boundaries of the player
-        public void setBoundaries(Texture2D sprite, int width, int height)
+        public void setBoundaries(int width, int height)
         {
             if (position.X > width - sprite.Width / 2)
                 position.X = width - sprite.Width / 2;
@@ -64,7 +83,7 @@ namespace gameTutorial
         }
 
         // a method to draw the player to the screen
-        public void drawPlayer(SpriteBatch spriteBatch, Texture2D sprite)
+        public void drawPlayer(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
             spriteBatch.Draw(
