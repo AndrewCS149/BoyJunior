@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 
 namespace gameTutorial
@@ -56,15 +57,53 @@ namespace gameTutorial
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 
             Game1.collisionObject = Game1.map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(0);
-            //Console.WriteLine(Game1.collisionObject.Objects.ElementAt<TiledMapObject>(0).Position.X);
+            //Console.WriteLine(Game1.collisionObject.Size.Height);
 
-            float objectX = Game1.collisionObject.Position.X;
-            float objectY = Game1.collisionObject.Position.Y;
+            float objX = Game1.collisionObject.Position.X;
+            float objY = Game1.collisionObject.Position.Y;
+            float objHeight = Game1.collisionObject.Size.Height;
+            float objWidth = Game1.collisionObject.Size.Width;
 
-            if (position.X > objectX - sprite.Width / 2)
+            // buffers to create separation between collision sides
+            float buff1 = sprite.Width / 2; // compensate for player width
+            float buff2 = sprite.Width / 2 + 4;
+
+            // hard code collision detection
+
+            // left
+            if (position.X > objX - buff1 &&
+                position.X < objX + objWidth + buff1 &&
+                position.Y > objY - buff1 && 
+                position.Y < objY + objHeight + buff1)
             {
-                //position.Y = position.Y;
-                position.X = objectX - sprite.Width / 2;
+                position.X = objX - buff1;
+            }
+
+            // top
+            if (position.Y > objY - buff2 && 
+                position.Y < objY + objHeight &&
+                position.X > objX - buff1 && 
+                position.X < objX + objWidth + buff1)
+            {
+                position.Y = objY - buff2;
+            }
+
+            // right
+            if (position.X < objX + objWidth + buff2 &&
+                position.X > objX - buff1 &&
+                position.Y > objY - buff1 &&
+                position.Y < objY + objHeight + buff1)
+            {
+                position.X = objX + objWidth + buff2;
+            }
+
+            // bottom 
+            if (position.Y < objY + objHeight + buff2 &&
+                position.Y > objY &&
+                position.X > objX - buff1 &&
+                position.X < objX + objWidth + buff1)
+            {
+                position.Y = objY + objHeight + buff2;
             }
         }
 
