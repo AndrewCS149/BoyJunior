@@ -15,6 +15,10 @@ namespace gameTutorial
     /// </summary>
     public class Game1 : Game
     {
+
+        private TiledMapLayer bottomLayer;
+        private TiledMapLayer topLayer;
+
         Texture2D playerSprite;
         Player player = new Player(200);
         World world = new World();
@@ -70,6 +74,11 @@ namespace gameTutorial
 
             // import tmx map
             map = Content.Load<TiledMap>("maps/terrain");
+            
+            // grab bottom layer and top layer
+            bottomLayer = map.GetLayer<TiledMapLayer>("bottomLayer");
+            topLayer = map.GetLayer<TiledMapLayer>("topLayer");
+
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
             mapRenderer.LoadMap(map);
         }
@@ -110,8 +119,10 @@ namespace gameTutorial
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            world.drawWorld(spriteBatch, mapRenderer);            
+            //world.drawWorld(spriteBatch, mapRenderer);            
+            mapRenderer.Draw(bottomLayer);
             player.drawPlayer(spriteBatch, playerSprite);
+            mapRenderer.Draw(topLayer);
 
             base.Draw(gameTime);
         }
