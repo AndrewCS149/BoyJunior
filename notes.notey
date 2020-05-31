@@ -1,0 +1,5 @@
+I need to figure out how to push  all of the world building features from the game1 class to the world class1.
+
+I figured out how to display the tiled tmx file in layers instead of displaying everything at once. This will allow the player to move behing different objects such as trees or a house. Now I need to figure out how to add collision obsticles such as a tree stump.
+
+

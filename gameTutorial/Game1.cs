@@ -7,6 +7,10 @@ using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
+using SharpDX.MediaFoundation;
+using System.ComponentModel.Design.Serialization;
+using System.Linq;
+using System.Net;
 
 namespace gameTutorial
 {
@@ -15,10 +19,18 @@ namespace gameTutorial
     /// </summary>
     public class Game1 : Game
     {
+
+        private TiledMapLayer bottomLayer;
+        private TiledMapLayer middleLayer;
+        private TiledMapLayer topLayer;
+        public static TiledMapObject collisionObject;
+        public static TiledMapObject collisionObject2;
+        public TiledMapObjectLayer objectLayer;
+
         Texture2D playerSprite;
-        Player player = new Player(200);
-        World world = new World();
-        private TiledMap map;
+        Player player;
+
+        public static TiledMap map;
         private TiledMapRenderer mapRenderer;
 
         int mapWidth;
@@ -53,7 +65,7 @@ namespace gameTutorial
             //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
-            player.initialize();
+            //player.initialize();
         }
 
         /// <summary>
@@ -62,16 +74,28 @@ namespace gameTutorial
         /// </summary>
         protected override void LoadContent()
         {
+
             //Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //// TODO: use this.Content to load your game content here
+            // load player
             playerSprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
+            player = new Player(200f, playerSprite.Width, playerSprite.Height, playerSprite);
 
             // import tmx map
             map = Content.Load<TiledMap>("maps/terrain");
+
+            // grab bottom layer and top layer
+            bottomLayer = map.GetLayer<TiledMapLayer>("bottomLayer");
+            middleLayer = map.GetLayer<TiledMapLayer>("middleLayer");
+            topLayer = map.GetLayer<TiledMapLayer>("topLayer");
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
             mapRenderer.LoadMap(map);
+
+            // collision variables
+            collisionObject = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(0);
+            collisionObject2 = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(1);
+            objectLayer = map.GetLayer<TiledMapObjectLayer>("collision");
         }
 
         /// <summary>
@@ -93,8 +117,17 @@ namespace gameTutorial
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            player.updatePosition(gameTime, playerSprite);
-            player.setBoundaries(playerSprite, mapWidth, mapHeight);
+            // update player position
+            player.updatePosition(gameTime);
+
+            // collision detection
+            for (int i = 0; i < objectLayer.Objects.Length; i++)
+            {
+                collisionObject = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(i);
+                player.collision(collisionObject);
+
+            }
+            player.setBoundaries(mapWidth, mapHeight);
 
             // update tmx map
             mapRenderer.Update(gameTime);
@@ -110,8 +143,10 @@ namespace gameTutorial
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            world.drawWorld(spriteBatch, mapRenderer);            
-            player.drawPlayer(spriteBatch, playerSprite);
+            mapRenderer.Draw(bottomLayer);
+            mapRenderer.Draw(middleLayer);
+            player.drawPlayer(spriteBatch);
+            mapRenderer.Draw(topLayer);
 
             base.Draw(gameTime);
         }
