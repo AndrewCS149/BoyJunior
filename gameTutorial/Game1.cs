@@ -56,7 +56,7 @@ namespace gameTutorial
 
             // set world size to fit monitor size
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height - 100;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height - 60;
 
             mapWidth = graphics.PreferredBackBufferWidth;
             mapHeight = graphics.PreferredBackBufferHeight;
