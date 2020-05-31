@@ -63,12 +63,6 @@ namespace gameTutorial
                 position.Y = sprite.Height / 2;
         }
 
-        // a method to return the position of the player
-        public Vector2 getPosition()
-        {
-            return position;
-        }
-
         // a method to draw the player to the screen
         public void drawPlayer(SpriteBatch spriteBatch, Texture2D sprite)
         {

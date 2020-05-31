@@ -7,6 +7,8 @@ using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
+using System.ComponentModel.Design.Serialization;
+using System.Net;
 
 namespace gameTutorial
 {
@@ -21,7 +23,6 @@ namespace gameTutorial
 
         Texture2D playerSprite;
         Player player = new Player(200);
-        World world = new World();
         private TiledMap map;
         private TiledMapRenderer mapRenderer;
 
@@ -66,15 +67,16 @@ namespace gameTutorial
         /// </summary>
         protected override void LoadContent()
         {
+
             //Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //// TODO: use this.Content to load your game content here
+            // load player
             playerSprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
 
             // import tmx map
             map = Content.Load<TiledMap>("maps/terrain");
-            
+
             // grab bottom layer and top layer
             bottomLayer = map.GetLayer<TiledMapLayer>("bottomLayer");
             topLayer = map.GetLayer<TiledMapLayer>("topLayer");
@@ -119,7 +121,6 @@ namespace gameTutorial
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            //world.drawWorld(spriteBatch, mapRenderer);            
             mapRenderer.Draw(bottomLayer);
             player.drawPlayer(spriteBatch, playerSprite);
             mapRenderer.Draw(topLayer);
