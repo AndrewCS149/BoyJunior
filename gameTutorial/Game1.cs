@@ -61,7 +61,7 @@ namespace gameTutorial
             //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
 
-            player.initialize();
+            //player.initialize();
         }
 
         /// <summary>
@@ -108,6 +108,7 @@ namespace gameTutorial
                 Exit();
 
             player.updatePosition(gameTime);
+            player.collision();
             player.setBoundaries(mapWidth, mapHeight);
 
             // update tmx map

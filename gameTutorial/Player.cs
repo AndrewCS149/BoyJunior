@@ -12,7 +12,7 @@ using MonoGame.Extended.Tiled;
 
 namespace gameTutorial
 {
-    class Player : Game
+    class Player : Collision
     {
         Vector2 position;
         float speed;
@@ -27,16 +27,16 @@ namespace gameTutorial
             this.width = width;
             this.height = height;
             this.speed = speed;
-            graphics = new GraphicsDeviceManager(this);
+            //graphics = new GraphicsDeviceManager(this);
         }
 
         // a method to initialize the player's starting position and to set the 
         // initial speed
-        public void initialize()
-        {
-            position = new Vector2(graphics.PreferredBackBufferWidth / 2,
-                graphics.PreferredBackBufferHeight / 2);
-        }
+        //public void initialize()
+        //{
+        //    position = new Vector2(graphics.PreferredBackBufferWidth / 2,
+        //        graphics.PreferredBackBufferHeight / 2);
+        //}
 
         // a method to update the position of the player based on the key press
         public void updatePosition(GameTime gameTime)
@@ -55,7 +55,59 @@ namespace gameTutorial
 
             if (keyState.IsKeyDown(Keys.D))
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                
+
+            //Game1.collisionObject = Game1.map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(0);
+
+            //float objX = Game1.collisionObject.Position.X;
+            //float objY = Game1.collisionObject.Position.Y;
+            //float objHeight = Game1.collisionObject.Size.Height;
+            //float objWidth = Game1.collisionObject.Size.Width;
+
+            //// buffers to create separation between collision sides
+            //float buff1 = sprite.Width / 2; // compensate for player width
+            //float buff2 = sprite.Width / 2 + 4;
+
+            //// hard code collision detection
+
+            //// left
+            //if (position.X > objX - buff1 &&
+            //    position.X < objX + objWidth + buff1 &&
+            //    position.Y > objY - buff1 &&
+            //    position.Y < objY + objHeight + buff1)
+            //{
+            //    position.X = objX - buff1;
+            //}
+
+            //// top
+            //if (position.Y > objY - buff2 &&
+            //    position.Y < objY + objHeight &&
+            //    position.X > objX - buff1 &&
+            //    position.X < objX + objWidth + buff1)
+            //{
+            //    position.Y = objY - buff2;
+            //}
+
+            //// right
+            //if (position.X < objX + objWidth + buff2 &&
+            //    position.X > objX - buff1 &&
+            //    position.Y > objY - buff1 &&
+            //    position.Y < objY + objHeight + buff1)
+            //{
+            //    position.X = objX + objWidth + buff2;
+            //}
+
+            //// bottom 
+            //if (position.Y < objY + objHeight + buff2 &&
+            //    position.Y > objY &&
+            //    position.X > objX - buff1 &&
+            //    position.X < objX + objWidth + buff1)
+            //{
+            //    position.Y = objY + objHeight + buff2;
+            //}
+        }
+
+        public void collision()
+        {
             Game1.collisionObject = Game1.map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(0);
 
             float objX = Game1.collisionObject.Position.X;
