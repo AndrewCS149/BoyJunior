@@ -57,7 +57,6 @@ namespace gameTutorial
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 
             Game1.collisionObject = Game1.map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(0);
-            //Console.WriteLine(Game1.collisionObject.Size.Height);
 
             float objX = Game1.collisionObject.Position.X;
             float objY = Game1.collisionObject.Position.Y;
@@ -73,16 +72,16 @@ namespace gameTutorial
             // left
             if (position.X > objX - buff1 &&
                 position.X < objX + objWidth + buff1 &&
-                position.Y > objY - buff1 && 
+                position.Y > objY - buff1 &&
                 position.Y < objY + objHeight + buff1)
             {
                 position.X = objX - buff1;
             }
 
             // top
-            if (position.Y > objY - buff2 && 
+            if (position.Y > objY - buff2 &&
                 position.Y < objY + objHeight &&
-                position.X > objX - buff1 && 
+                position.X > objX - buff1 &&
                 position.X < objX + objWidth + buff1)
             {
                 position.Y = objY - buff2;
