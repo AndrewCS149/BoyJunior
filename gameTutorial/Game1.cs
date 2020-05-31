@@ -24,7 +24,6 @@ namespace gameTutorial
         private TiledMapLayer middleLayer;
         private TiledMapLayer topLayer;
         public static TiledMapObject collisionObject;
-        public static TiledMapObject collisionObject2;
         public TiledMapObjectLayer objectLayer;
 
         Texture2D playerSprite;
@@ -94,7 +93,6 @@ namespace gameTutorial
 
             // collision variables
             collisionObject = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(0);
-            collisionObject2 = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(1);
             objectLayer = map.GetLayer<TiledMapObjectLayer>("collision");
         }
 
