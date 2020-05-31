@@ -12,7 +12,7 @@ using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Net;
 
-namespace gameTutorial
+namespace BoyJuior
 {
     /// <summary>
     /// This is the main type for your game.

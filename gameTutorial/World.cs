@@ -10,7 +10,7 @@ using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 using Microsoft.Xna.Framework.Content.Pipeline;
 
-namespace gameTutorial
+namespace BoyJuior
 {
 
     // A class to initialize and draw the world to the screen
