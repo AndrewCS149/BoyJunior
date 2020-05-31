@@ -21,6 +21,7 @@ namespace gameTutorial
     {
 
         private TiledMapLayer bottomLayer;
+        private TiledMapLayer middleLayer;
         private TiledMapLayer topLayer;
         public static TiledMapObject collisionObject;
         public static TiledMapObject collisionObject2;
@@ -86,6 +87,7 @@ namespace gameTutorial
 
             // grab bottom layer and top layer
             bottomLayer = map.GetLayer<TiledMapLayer>("bottomLayer");
+            middleLayer = map.GetLayer<TiledMapLayer>("middleLayer");
             topLayer = map.GetLayer<TiledMapLayer>("topLayer");
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
             mapRenderer.LoadMap(map);
@@ -142,6 +144,7 @@ namespace gameTutorial
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             mapRenderer.Draw(bottomLayer);
+            mapRenderer.Draw(middleLayer);
             player.drawPlayer(spriteBatch);
             mapRenderer.Draw(topLayer);
 
