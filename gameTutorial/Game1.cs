@@ -24,7 +24,6 @@ namespace gameTutorial
         private TiledMapLayer middleLayer;
         private TiledMapLayer topLayer;
         public static TiledMapObject collisionObject;
-        public static TiledMapObject collisionObject2;
         public TiledMapObjectLayer objectLayer;
 
         Texture2D playerSprite;
@@ -57,7 +56,7 @@ namespace gameTutorial
 
             // set world size to fit monitor size
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height - 100;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height - 60;
 
             mapWidth = graphics.PreferredBackBufferWidth;
             mapHeight = graphics.PreferredBackBufferHeight;
@@ -94,7 +93,6 @@ namespace gameTutorial
 
             // collision variables
             collisionObject = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(0);
-            collisionObject2 = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(1);
             objectLayer = map.GetLayer<TiledMapObjectLayer>("collision");
         }
 
