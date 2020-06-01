@@ -23,6 +23,8 @@ namespace gameTutorial
         private TiledMapLayer bottomLayer;
         private TiledMapLayer middleLayer;
         private TiledMapLayer topLayer;
+        private TiledMapLayer overLapLayer;
+
         public static TiledMapObject collisionObject;
         public TiledMapObjectLayer objectLayer;
 
@@ -84,10 +86,11 @@ namespace gameTutorial
             // import tmx map
             map = Content.Load<TiledMap>("maps/terrain");
 
-            // grab bottom layer and top layer
+            // grab bottom, middle and top layers
             bottomLayer = map.GetLayer<TiledMapLayer>("bottomLayer");
             middleLayer = map.GetLayer<TiledMapLayer>("middleLayer");
             topLayer = map.GetLayer<TiledMapLayer>("topLayer");
+            overLapLayer = map.GetLayer<TiledMapLayer>("overLapLayer");
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
             mapRenderer.LoadMap(map);
 
@@ -145,6 +148,7 @@ namespace gameTutorial
             mapRenderer.Draw(middleLayer);
             player.drawPlayer(spriteBatch);
             mapRenderer.Draw(topLayer);
+            mapRenderer.Draw(overLapLayer);
 
             base.Draw(gameTime);
         }
