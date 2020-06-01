@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="80" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="89">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="80" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="98">
  <tileset firstgid="1" name="grass" tilewidth="32" tileheight="32" tilecount="1" columns="1">
   <image source="grass.png" width="32" height="32"/>
  </tileset>
@@ -240,4 +240,5 @@
   <object id="87" x="2261.33" y="1272" width="26.6667" height="13.3333"/>
   <object id="88" x="2417.33" y="1045.33" width="30.6667" height="14.6667"/>
  </objectgroup>
+ <objectgroup id="9" name="opacity"/>
 </map>

@@ -20,11 +20,13 @@ namespace gameTutorial
     public class Game1 : Game
     {
 
+        // initialize all layers
         private TiledMapLayer bottomLayer;
         private TiledMapLayer middleLayer;
         private TiledMapLayer topLayer;
         private TiledMapLayer overLapLayer;
 
+        // initialize collision objects
         public static TiledMapObject collisionObject;
         public TiledMapObjectLayer objectLayer;
 
@@ -95,7 +97,6 @@ namespace gameTutorial
             mapRenderer.LoadMap(map);
 
             // collision variables
-            collisionObject = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(0);
             objectLayer = map.GetLayer<TiledMapObjectLayer>("collision");
         }
 
@@ -126,7 +127,6 @@ namespace gameTutorial
             {
                 collisionObject = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(i);
                 player.collision(collisionObject);
-
             }
             player.setBoundaries(mapWidth, mapHeight);
 
@@ -144,6 +144,7 @@ namespace gameTutorial
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            // draw all layers
             mapRenderer.Draw(bottomLayer);
             mapRenderer.Draw(middleLayer);
             player.drawPlayer(spriteBatch);
