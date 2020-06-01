@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 
-namespace gameTutorial
+namespace BoyJuior
 {
     class Player : Collision
     {

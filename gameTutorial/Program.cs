@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace gameTutorial
+namespace BoyJuior
 {
 #if WINDOWS || LINUX
     /// <summary>

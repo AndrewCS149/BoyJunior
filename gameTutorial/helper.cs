@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace gameTutorial
+namespace BoyJuior
 {
 
     // this class is designed to help other classes such as load, initialize and more.
