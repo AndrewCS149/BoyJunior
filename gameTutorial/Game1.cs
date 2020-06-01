@@ -12,7 +12,7 @@ using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Net;
 
-namespace gameTutorial
+namespace BoyJuior
 {
     /// <summary>
     /// This is the main type for your game.
@@ -20,9 +20,13 @@ namespace gameTutorial
     public class Game1 : Game
     {
 
+        // initialize all layers
         private TiledMapLayer bottomLayer;
         private TiledMapLayer middleLayer;
         private TiledMapLayer topLayer;
+        private TiledMapLayer overLapLayer;
+
+        // initialize collision objects
         public static TiledMapObject collisionObject;
         public TiledMapObjectLayer objectLayer;
 
@@ -78,21 +82,21 @@ namespace gameTutorial
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // load player
-            playerSprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
+            playerSprite = Content.Load<Texture2D>("Imgs/player");
             player = new Player(200f, playerSprite.Width, playerSprite.Height, playerSprite);
 
             // import tmx map
             map = Content.Load<TiledMap>("maps/terrain");
 
-            // grab bottom layer and top layer
+            // grab bottom, middle and top layers
             bottomLayer = map.GetLayer<TiledMapLayer>("bottomLayer");
             middleLayer = map.GetLayer<TiledMapLayer>("middleLayer");
             topLayer = map.GetLayer<TiledMapLayer>("topLayer");
+            overLapLayer = map.GetLayer<TiledMapLayer>("overLapLayer");
             mapRenderer = new TiledMapRenderer(GraphicsDevice);
             mapRenderer.LoadMap(map);
 
             // collision variables
-            collisionObject = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(0);
             objectLayer = map.GetLayer<TiledMapObjectLayer>("collision");
         }
 
@@ -123,7 +127,6 @@ namespace gameTutorial
             {
                 collisionObject = map.GetLayer<TiledMapObjectLayer>("collision").Objects.ElementAt<TiledMapObject>(i);
                 player.collision(collisionObject);
-
             }
             player.setBoundaries(mapWidth, mapHeight);
 
@@ -141,10 +144,12 @@ namespace gameTutorial
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            // draw all layers
             mapRenderer.Draw(bottomLayer);
             mapRenderer.Draw(middleLayer);
             player.drawPlayer(spriteBatch);
             mapRenderer.Draw(topLayer);
+            mapRenderer.Draw(overLapLayer);
 
             base.Draw(gameTime);
         }
