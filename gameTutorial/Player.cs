@@ -110,11 +110,6 @@ namespace gameTutorial
             }
         }
 
-        public void opacity()
-        {
-            
-        }
-
         // a method to set the window boundaries of the player
         public void setBoundaries(int width, int height)
         {

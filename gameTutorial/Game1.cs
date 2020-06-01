@@ -82,7 +82,7 @@ namespace gameTutorial
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // load player
-            playerSprite = Content.Load<Texture2D>("Imgs/blue-shirt-guy");
+            playerSprite = Content.Load<Texture2D>("Imgs/player");
             player = new Player(200f, playerSprite.Width, playerSprite.Height, playerSprite);
 
             // import tmx map
