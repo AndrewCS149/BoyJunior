@@ -1,16 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
-using MonoGame.Extended.Content;
-using MonoGame.Extended.Graphics;
-using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
-using SharpDX.MediaFoundation;
-using System.ComponentModel.Design.Serialization;
 using System.Linq;
-using System.Net;
 
 namespace BoyJuior
 {
