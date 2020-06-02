@@ -11,5 +11,8 @@ Boy-Junior is an ongoing project that allows me to learn the basics of C# and th
   * MonoGame
   * MonoGame.Extended
 
+---
+
 Language: C#
+
 Framework: MonoGame
